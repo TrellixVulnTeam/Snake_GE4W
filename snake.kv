@@ -1,0 +1,1261 @@
+<FieldPart>:
+    canvas:
+        Color:
+            rgb: (self.r, self.g, self.b)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    size_hint: .05, .05
+<ResultScreen>:
+    cur_score_first: cur_score_first
+    cur_score_second: cur_score_second
+    cur_score_third: cur_score_third
+
+    bsw_f: bsw_f
+    bsw_s: bsw_s
+    bsw_t: bsw_t
+    padding: self.size[0]/25, self.size[1]/8, self.size[0]/25, self.size[1]/16
+    cols: 1
+    rows: 9
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, .4)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    Image:
+        size_hint: .4, .4
+        source: "game_over.png"
+    Widget:
+        size_hint: 1, .2
+    Image:
+        size_hint: 1, 2
+        source: "cup.png"
+    Widget:
+        size_hint: 1, .2
+    GridLayout:
+        rows: 1
+        cols: 14
+        size_hint: .4, .4
+        spacing: (2, 0)
+        Widget:
+        Widget:
+        Widget:
+        Widget:
+        Widget:
+        Image:
+            size_hint: 2.77, 1.5
+            source: "score_word.png"
+        ScoreFirst:
+            id: cur_score_first
+            size_hint: .5, 1
+            source: self.first_num
+        ScoreSecond:
+            id: cur_score_second
+            size_hint: .5, 1
+            source: self.second_num
+        ScoreThird:
+            id: cur_score_third
+            size_hint: .5, 1
+            source: self.third_num
+        Widget:
+        Widget:
+        Widget:
+        Widget:
+        Widget:
+    Widget:
+        size_hint: 1, .2
+    GridLayout:
+        rows: 1
+        cols: 12
+        size_hint: .4, .4
+        spacing: (2, 0)
+        pos_hint_y: 1
+        Widget:
+        Widget:
+        Widget:
+        Widget:
+        Image:
+            size_hint: 5, 1.5
+            source: "best_score_word.png"
+        ScoreFirst:
+            id: bsw_f
+            size_hint: .5, 1
+            source: self.first_num
+        ScoreSecond:
+            id: bsw_s
+            size_hint: .5, 1
+            source: self.second_num
+        ScoreThird:
+            id: bsw_t
+            size_hint: .5, 1
+            source: self.third_num
+        Widget:
+        Widget:
+        Widget:
+        Widget:
+    Widget:
+        size_hint: 1, .2
+    GridLayout:
+        rows: 1
+        cols: 7
+        size_hint_y: .65
+        Widget:
+        Widget:
+        Widget:
+        ImageButton:
+            size_hint: 3.2, .6
+            source: "continue_button.png" if self.state == "normal" else "continue_button_hover.png"
+            on_release:
+                app.root.current = "first_screen"
+                app.root.transition.direction = "right"
+                app.root.game_form.check_number_of_start = 1
+                app.root.game_form.click_music()
+                app.root.game_form.op_men_con()
+        Widget:
+        Widget:
+        Widget:
+<SettingsButton>:
+    size_hint: .08, .18
+    pos_hint: {'right': .97, 'y': .05}
+    source: "cogwheel.png" if self.state == "normal" else "cogwheel_light.png"
+<ShowPopup>:
+    six_body: six_body
+    five_body: five_body
+    four_body: four_body
+    three_body: three_body
+    two_body: two_body
+    one_body: one_body
+    self_mode: self_mode
+    switch_border: switch_border
+    switch_sounds: switch_sounds
+    switch_music: switch_music
+    cols: 1
+    rows: 3
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, self.a)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    Button:
+        background_color: 0, 0, 0, 0
+        on_press:
+            root.des_canvas()
+    GridLayout:
+        size_hint_y: 13
+        cols: 3
+        rows: 1
+        Button:
+            background_color: 0, 0, 0, 0
+            on_press:
+                root.des_canvas()
+        GridLayout:
+            prev_widget: prev_widget
+            size_hint_x: 4
+            cols: 1
+            rows: 1
+            GridButton:
+                spacing: 2
+                background_color: 0, 0, 0, 0
+                cols: 1
+                rows: 16
+                padding: self.size[0]/25, self.size[1]/20, self.size[0]/25, self.size[1]/20
+                canvas.before:
+                    Color:
+                        rgb: .71, .95, .77
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                canvas.after:
+                    Color:
+                        rgb: 0, 0, 0
+                    Line:
+                        width: min(self.size)/250
+                        rectangle: self.x, self.y, self.width, self.height
+                Image:
+                    size_hint_y: 1.3
+                    source: "settings_img.png"
+                Label:
+                    canvas.before:
+                        Color:
+                            rgb: (0, .56, .2)
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    size_hint_y: None
+                    height: 3
+                GridLayout:
+                    cols: 1
+                    rows: 1
+                    size_hint_y: .2
+                    Widget:
+                GridLayout:
+                    rows: 1
+                    cols: 5
+                    size_hint_y: 1.4
+                    Widget:
+                        size_hint_x: .05
+                    Image:
+                        size_hint_x: 2.5
+                        source: "mode_word.png"
+                    Widget:
+                        size_hint_x: .2
+                    ImageButton:
+                        id: self_mode
+                        size_hint_x: 10.5
+                        size_hint_y: 1
+                        source: "normal_mode.png"
+                        on_press:
+                            root.change_mode_img()
+                    Widget:
+                        size_hint_x: .05
+                GridLayout:
+                    cols: 1
+                    rows: 1
+                    size_hint_y: .2
+                    Widget:
+                GridLayout:
+                    cols: 5
+                    rows: 1
+                    size_hint_y: 1.6
+                    Widget:
+                    Image:
+                        size_hint_y: 1
+                        size_hint_x: 1
+                        source: "color_word.png"
+                    Widget:
+                        size_hint_x: .2
+                    ImageButton:
+                        size_hint_y: .1
+                        size_hint_x: 1.3
+                        source: "change_button.png" if self.state == "normal" else "change_button_hover.png"
+                        on_release:
+                            root.change_color()
+                    Widget:
+                GridLayout:
+                    cols: 1
+                    rows: 1
+                    size_hint_y: .1
+                    Widget:
+                GridLayout:
+                    rows: 1
+                    cols: 8
+                    padding: 2
+                    spacing: 2
+                    size_hint_y: 1.5
+                    Widget:
+                        size_hint_x: .24
+                    FieldPart:
+                        id: six_body
+                    FieldPart:
+                        id: five_body
+                    FieldPart:
+                        id: four_body
+                    FieldPart:
+                        id: three_body
+                    FieldPart:
+                        id: two_body
+                    FieldPart:
+                        id: one_body
+                    Widget:
+                        size_hint_x: .24
+                GridLayout:
+                    cols: 1
+                    rows: 1
+                    size_hint_y: .2
+                    Widget:
+                GridLayout:
+                    rows: 1
+                    cols: 5
+                    size_hint_y: 1.5
+                    Widget:
+                    Image:
+                        size_hint_x: 1.5
+                        source: "border_word.png"
+                    Widget:
+                        size_hint_x: .2
+                    ImageButton:
+                        id: switch_border
+                        size_hint_x: 1.4
+                        size_hint_y: .3
+                        source: "on_switch.png"
+                        on_press:
+                            self.source = "off_switch.png" if self.source == "on_switch.png" else "on_switch.png"
+                            root.change_switch_border()
+                    Widget:
+                GridLayout:
+                    cols: 1
+                    rows: 1
+                    size_hint_y: .2
+                    Widget:
+                GridLayout:
+                    cols: 5
+                    rows: 1
+                    size_hint_y: 1.5
+                    Widget:
+                    Image:
+                        size_hint_x: 1.5
+                        source: "sounds_word.png"
+                    Widget:
+                        size_hint_x: .2
+                    ImageButton:
+                        id: switch_sounds
+                        size_hint_x: 1.4
+                        size_hint_y: .3
+                        source: "on_switch.png"
+                        on_press:
+                            self.source = "off_switch.png" if self.source == "on_switch.png" else "on_switch.png"
+                            root.change_switch_sounds()
+                    Widget:
+                        id: prev_widget
+                GridLayout:
+                    cols: 1
+                    rows: 1
+                    size_hint_y: .2
+                    Widget:
+                GridLayout:
+                    cols: 5
+                    rows: 1
+                    size_hint_y: 1.5
+                    Widget:
+                    Image:
+                        size_hint_x: 1.5
+                        source: "music_word.png"
+                    Widget:
+                        size_hint_x: .2
+                    ImageButton:
+                        id: switch_music
+                        size_hint_x: 1.4
+                        size_hint_y: .3
+                        source: "on_switch.png"
+                        on_press:
+                            self.source = "off_switch.png" if self.source == "on_switch.png" else "on_switch.png"
+                            root.change_switch_music()
+                    Widget:
+                GridLayout:
+                    cols: 1
+                    rows: 1
+                    size_hint_y: .2
+                    Widget:
+                GridLayout:
+                    rows: 1
+                    cols: 3
+                    size_hint_y: 2.1
+                    Widget:
+                    ImageButton:
+                        size_hint_x: 1.4
+                        source: "save_button.png" if self.state == "normal" else "save_button_hover.png"
+                        on_release:
+                            root.des_canvas()
+                            root.save_options()
+                            app.root.game_form.reset_options_list()
+                            app.root.game_form.click_continue()
+                    Widget:
+        Button:
+            background_color: 0, 0, 0, 0
+            on_press:
+                root.des_canvas()
+    Button:
+        background_color: 0, 0, 0, 0
+        on_press:
+            root.des_canvas()
+ScreenManager:
+    game_form: game_form
+    id: screenmanag
+    Screen:
+        name: "first_screen"
+        FloatLayout:
+            canvas.before:
+                Color:
+                    rgb: (.71, .95, .77)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Image:
+                size_hint: .7, .7
+                pos_hint: {"center_x": .5, "center_y": .65}
+                source: "snake.png"
+            ImageButton:
+                size_hint: .3, .13
+                pos_hint: {'center_x': .5, 'center_y': .3}
+                source: "play_button.png" if self.state == "normal" else "play_button_hover.png"
+                on_release:
+                    app.root.current = "second_screen"
+                    root.transition.direction = "left"
+                    app.root.game_form.end_cleaning()
+                    app.root.game_form.click_music()
+                    app.root.game_form.gms()
+            SettingsButton:
+                sett_show: sett_show
+                on_release:
+                    self.show_popup()
+                    app.root.game_form.click_music()
+        GridLayout:
+            id: sett_show
+            rows: 1
+            cols: 1
+    Screen:
+        name: "second_screen"
+        GameForm:
+            id: game_form
+            zerozero: zerozero
+            zeroone: zeroone
+            zerotwo: zerotwo
+            zerothree: zerothree
+            zerofour: zerofour
+            zerofive: zerofive
+            zerosix: zerosix
+            zeroseven: zeroseven
+            zeroeight: zeroeight
+            zeronine: zeronine
+            zeroten: zeroten
+            zeroeleven: zeroeleven
+            zerotwelve: zerotwelve
+            zerothirteen: zerothirteen
+            zerofourteen: zerofourteen
+            zerofifteen: zerofifteen
+            zerosixteen: zerosixteen
+            zeroseventeen: zeroseventeen
+            zeroeighteen: zeroeighteen
+            zeronineteen: zeronineteen
+            zerotwenty: zerotwenty
+            zerotwenty_one: zerotwenty_one
+            zerotwenty_two: zerotwenty_two
+
+            onezero: onezero
+            oneone: oneone
+            onetwo: onetwo
+            onethree: onethree
+            onefour: onefour
+            onefive: onefive
+            onesix: onesix
+            oneseven: oneseven
+            oneeight: oneeight
+            onenine: onenine
+            oneten: oneten
+            oneeleven: oneeleven
+            onetwelve: onetwelve
+            onethirteen: onethirteen
+            onefourteen: onefourteen
+            onefifteen: onefifteen
+            onesixteen: onesixteen
+            oneseventeen: oneseventeen
+            oneeighteen: oneeighteen
+            onenineteen: onenineteen
+            onetwenty: onetwenty
+            onetwenty_one: onetwenty_one
+            onetwenty_two: onetwenty_two
+
+            twozero: twozero
+            twoone: twoone
+            twotwo: twotwo
+            twothree: twothree
+            twofour: twofour
+            twofive: twofive
+            twosix: twosix
+            twoseven: twoseven
+            twoeight: twoeight
+            twonine: twonine
+            twoten: twoten
+            twoeleven: twoeleven
+            twotwelve: twotwelve
+            twothirteen: twothirteen
+            twofourteen: twofourteen
+            twofifteen: twofifteen
+            twosixteen: twosixteen
+            twoseventeen: twoseventeen
+            twoeighteen: twoeighteen
+            twonineteen: twonineteen
+            twotwenty: twotwenty
+            twotwenty_one: twotwenty_one
+            twotwenty_two: twotwenty_two
+
+            threezero: threezero
+            threeone: threeone
+            threetwo: threetwo
+            threethree: threethree
+            threefour: threefour
+            threefive: threefive
+            threesix: threesix
+            threeseven: threeseven
+            threeeight: threeeight
+            threenine: threenine
+            threeten: threeten
+            threeeleven: threeeleven
+            threetwelve: threetwelve
+            threethirteen: threethirteen
+            threefourteen: threefourteen
+            threefifteen: threefifteen
+            threesixteen: threesixteen
+            threeseventeen: threeseventeen
+            threeeighteen: threeeighteen
+            threenineteen: threenineteen
+            threetwenty: threetwenty
+            threetwenty_one: threetwenty_one
+            threetwenty_two: threetwenty_two
+
+            fourzero: fourzero
+            fourone: fourone
+            fourtwo: fourtwo
+            fourthree: fourthree
+            fourfour: fourfour
+            fourfive: fourfive
+            foursix: foursix
+            fourseven: fourseven
+            foureight: foureight
+            fournine: fournine
+            fourten: fourten
+            foureleven: foureleven
+            fourtwelve: fourtwelve
+            fourthirteen: fourthirteen
+            fourfourteen: fourfourteen
+            fourfifteen: fourfifteen
+            foursixteen: foursixteen
+            fourseventeen: fourseventeen
+            foureighteen: foureighteen
+            fournineteen: fournineteen
+            fourtwenty: fourtwenty
+            fourtwenty_one: fourtwenty_one
+            fourtwenty_two: fourtwenty_two
+
+            fivezero: fivezero
+            fiveone: fiveone
+            fivetwo: fivetwo
+            fivethree: fivethree
+            fivefour: fivefour
+            fivefive: fivefive
+            fivesix: fivesix
+            fiveseven: fiveseven
+            fiveeight: fiveeight
+            fivenine: fivenine
+            fiveten: fiveten
+            fiveeleven: fiveeleven
+            fivetwelve: fivetwelve
+            fivethirteen: fivethirteen
+            fivefourteen: fivefourteen
+            fivefifteen: fivefifteen
+            fivesixteen: fivesixteen
+            fiveseventeen: fiveseventeen
+            fiveeighteen: fiveeighteen
+            fivenineteen: fivenineteen
+            fivetwenty: fivetwenty
+            fivetwenty_one: fivetwenty_one
+            fivetwenty_two: fivetwenty_two
+
+            sixzero: sixzero
+            sixone: sixone
+            sixtwo: sixtwo
+            sixthree: sixthree
+            sixfour: sixfour
+            sixfive: sixfive
+            sixsix: sixsix
+            sixseven: sixseven
+            sixeight: sixeight
+            sixnine: sixnine
+            sixten: sixten
+            sixeleven: sixeleven
+            sixtwelve: sixtwelve
+            sixthirteen: sixthirteen
+            sixfourteen: sixfourteen
+            sixfifteen: sixfifteen
+            sixsixteen: sixsixteen
+            sixseventeen: sixseventeen
+            sixeighteen: sixeighteen
+            sixnineteen: sixnineteen
+            sixtwenty: sixtwenty
+            sixtwenty_one: sixtwenty_one
+            sixtwenty_two: sixtwenty_two
+
+            sevenzero: sevenzero
+            sevenone: sevenone
+            seventwo: seventwo
+            seventhree: seventhree
+            sevenfour: sevenfour
+            sevenfive: sevenfive
+            sevensix: sevensix
+            sevenseven: sevenseven
+            seveneight: seveneight
+            sevennine: sevennine
+            seventen: seventen
+            seveneleven: seveneleven
+            seventwelve: seventwelve
+            seventhirteen: seventhirteen
+            sevenfourteen: sevenfourteen
+            sevenfifteen: sevenfifteen
+            sevensixteen: sevensixteen
+            sevenseventeen: sevenseventeen
+            seveneighteen: seveneighteen
+            sevennineteen: sevennineteen
+            seventwenty: seventwenty
+            seventwenty_one: seventwenty_one
+            seventwenty_two: seventwenty_two
+
+            eightzero: eightzero
+            eightone: eightone
+            eighttwo: eighttwo
+            eightthree: eightthree
+            eightfour: eightfour
+            eightfive: eightfive
+            eightsix: eightsix
+            eightseven: eightseven
+            eighteight: eighteight
+            eightnine: eightnine
+            eightten: eightten
+            eighteleven: eighteleven
+            eighttwelve: eighttwelve
+            eightthirteen: eightthirteen
+            eightfourteen: eightfourteen
+            eightfifteen: eightfifteen
+            eightsixteen: eightsixteen
+            eightseventeen: eightseventeen
+            eighteighteen: eighteighteen
+            eightnineteen: eightnineteen
+            eighttwenty: eighttwenty
+            eighttwenty_one: eighttwenty_one
+            eighttwenty_two: eighttwenty_two
+
+            ninezero: ninezero
+            nineone: nineone
+            ninetwo: ninetwo
+            ninethree: ninethree
+            ninefour: ninefour
+            ninefive: ninefive
+            ninesix: ninesix
+            nineseven: nineseven
+            nineeight: nineeight
+            ninenine: ninenine
+            nineten: nineten
+            nineeleven: nineeleven
+            ninetwelve: ninetwelve
+            ninethirteen: ninethirteen
+            ninefourteen: ninefourteen
+            ninefifteen: ninefifteen
+            ninesixteen: ninesixteen
+            nineseventeen: nineseventeen
+            nineeighteen: nineeighteen
+            ninenineteen: ninenineteen
+            ninetwenty: ninetwenty
+            ninetwenty_one: ninetwenty_one
+            ninetwenty_two: ninetwenty_two
+
+            tenzero: tenzero
+            tenone: tenone
+            tentwo: tentwo
+            tenthree: tenthree
+            tenfour: tenfour
+            tenfive: tenfive
+            tensix: tensix
+            tenseven: tenseven
+            teneight: teneight
+            tennine: tennine
+            tenten: tenten
+            teneleven: teneleven
+            tentwelve: tentwelve
+            tenthirteen: tenthirteen
+            tenfourteen: tenfourteen
+            tenfifteen: tenfifteen
+            tensixteen: tensixteen
+            tenseventeen: tenseventeen
+            teneighteen: teneighteen
+            tennineteen: tennineteen
+            tentwenty: tentwenty
+            tentwenty_one: tentwenty_one
+            tentwenty_two: tentwenty_two
+
+            current_score_first: current_score_first
+            current_score_two: current_score_two
+            current_score_three: current_score_three
+
+            best_score_first: best_score_first
+            best_score_two: best_score_two
+            best_score_three: best_score_three
+
+            tts: tts
+
+            res_screen: res_screen
+            padding: self.size[0]/40, self.size[1]/21, self.size[0]/40, self.size[1]/21
+            rows: 3
+            spacing: 2
+            canvas.before:
+                Color:
+                    rgb: (.71, .95, .77)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            GridLayout:
+                size_hint: 1 , .07
+                cols: 13
+                spacing: (0, 2)
+                GridLayout:
+                    cols: 3
+                    spacing: (2, 0)
+                    Image:
+                        id: current_score_first
+                        source: "number_zero.png"
+                    Image:
+                        id: current_score_two
+                        source: "number_zero.png"
+                    Image:
+                        id: current_score_three
+                        source: "number_zero.png"
+                Widget:
+                Widget:
+                Widget:
+                Widget:
+                Widget:
+                Widget:
+                Widget:
+                Widget:
+                Widget:
+                Image:
+                    size_hint_x: 1.5
+                    source: "best_word.png"
+                Widget:
+                    size_hint: (None, None)
+                    size: 2, 2
+                GridLayout:
+                    cols: 3
+                    spacing: (2, 0)
+                    ScoreFirst:
+                        id: best_score_first
+                        source: self.first_num
+                    ScoreSecond:
+                        id: best_score_two
+                        source: self.second_num
+                    ScoreThird:
+                        id: best_score_three
+                        source: self.third_num
+            GridLayout:
+                rows: 1
+                size_hint: 1, .01
+                Label:
+                    canvas.before:
+                        Color:
+                            rgb: (0, .56, .2)
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+                    size_hint_y: None
+                    height: 3
+            GridLayout:
+                spacing: 2
+                padding: 2
+                cols: 23
+                rows: 11
+                FieldPart:
+                    id: zerozero
+                FieldPart:
+                    id: zeroone
+                FieldPart:
+                    id: zerotwo
+                FieldPart:
+                    id: zerothree
+                FieldPart:
+                    id: zerofour
+                FieldPart:
+                    id: zerofive
+                FieldPart:
+                    id: zerosix
+                FieldPart:
+                    id: zeroseven
+                FieldPart:
+                    id: zeroeight
+                FieldPart:
+                    id: zeronine
+                FieldPart:
+                    id: zeroten
+                FieldPart:
+                    id: zeroeleven
+                FieldPart:
+                    id: zerotwelve
+                FieldPart:
+                    id: zerothirteen
+                FieldPart:
+                    id: zerofourteen
+                FieldPart:
+                    id: zerofifteen
+                FieldPart:
+                    id: zerosixteen
+                FieldPart:
+                    id: zeroseventeen
+                FieldPart:
+                    id: zeroeighteen
+                FieldPart:
+                    id: zeronineteen
+                FieldPart:
+                    id: zerotwenty
+                FieldPart:
+                    id: zerotwenty_one
+                FieldPart:
+                    id: zerotwenty_two
+                FieldPart:
+                    id: onezero
+                FieldPart:
+                    id: oneone
+                FieldPart:
+                    id: onetwo
+                FieldPart:
+                    id: onethree
+                FieldPart:
+                    id: onefour
+                FieldPart:
+                    id: onefive
+                FieldPart:
+                    id: onesix
+                FieldPart:
+                    id: oneseven
+                FieldPart:
+                    id: oneeight
+                FieldPart:
+                    id: onenine
+                FieldPart:
+                    id: oneten
+                FieldPart:
+                    id: oneeleven
+                FieldPart:
+                    id: onetwelve
+                FieldPart:
+                    id: onethirteen
+                FieldPart:
+                    id: onefourteen
+                FieldPart:
+                    id: onefifteen
+                FieldPart:
+                    id: onesixteen
+                FieldPart:
+                    id: oneseventeen
+                FieldPart:
+                    id: oneeighteen
+                FieldPart:
+                    id: onenineteen
+                FieldPart:
+                    id: onetwenty
+                FieldPart:
+                    id: onetwenty_one
+                FieldPart:
+                    id: onetwenty_two
+                FieldPart:
+                    id: twozero
+                FieldPart:
+                    id: twoone
+                FieldPart:
+                    id: twotwo
+                FieldPart:
+                    id: twothree
+                FieldPart:
+                    id: twofour
+                FieldPart:
+                    id: twofive
+                FieldPart:
+                    id: twosix
+                FieldPart:
+                    id: twoseven
+                FieldPart:
+                    id: twoeight
+                FieldPart:
+                    id: twonine
+                FieldPart:
+                    id: twoten
+                FieldPart:
+                    id: twoeleven
+                FieldPart:
+                    id: twotwelve
+                FieldPart:
+                    id: twothirteen
+                FieldPart:
+                    id: twofourteen
+                FieldPart:
+                    id: twofifteen
+                FieldPart:
+                    id: twosixteen
+                FieldPart:
+                    id: twoseventeen
+                FieldPart:
+                    id: twoeighteen
+                FieldPart:
+                    id: twonineteen
+                FieldPart:
+                    id: twotwenty
+                FieldPart:
+                    id: twotwenty_one
+                FieldPart:
+                    id: twotwenty_two
+                FieldPart:
+                    id: threezero
+                FieldPart:
+                    id: threeone
+                FieldPart:
+                    id: threetwo
+                FieldPart:
+                    id: threethree
+                FieldPart:
+                    id: threefour
+                FieldPart:
+                    id: threefive
+                FieldPart:
+                    id: threesix
+                FieldPart:
+                    id: threeseven
+                FieldPart:
+                    id: threeeight
+                FieldPart:
+                    id: threenine
+                FieldPart:
+                    id: threeten
+                FieldPart:
+                    id: threeeleven
+                FieldPart:
+                    id: threetwelve
+                FieldPart:
+                    id: threethirteen
+                FieldPart:
+                    id: threefourteen
+                FieldPart:
+                    id: threefifteen
+                FieldPart:
+                    id: threesixteen
+                FieldPart:
+                    id: threeseventeen
+                FieldPart:
+                    id: threeeighteen
+                FieldPart:
+                    id: threenineteen
+                FieldPart:
+                    id: threetwenty
+                FieldPart:
+                    id: threetwenty_one
+                FieldPart:
+                    id: threetwenty_two
+                FieldPart:
+                    id: fourzero
+                FieldPart:
+                    id: fourone
+                FieldPart:
+                    id: fourtwo
+                FieldPart:
+                    id: fourthree
+                FieldPart:
+                    id: fourfour
+                FieldPart:
+                    id: fourfive
+                FieldPart:
+                    id: foursix
+                FieldPart:
+                    id: fourseven
+                FieldPart:
+                    id: foureight
+                FieldPart:
+                    id: fournine
+                FieldPart:
+                    id: fourten
+                FieldPart:
+                    id: foureleven
+                FieldPart:
+                    id: fourtwelve
+                FieldPart:
+                    id: fourthirteen
+                FieldPart:
+                    id: fourfourteen
+                FieldPart:
+                    id: fourfifteen
+                FieldPart:
+                    id: foursixteen
+                FieldPart:
+                    id: fourseventeen
+                FieldPart:
+                    id: foureighteen
+                FieldPart:
+                    id: fournineteen
+                FieldPart:
+                    id: fourtwenty
+                FieldPart:
+                    id: fourtwenty_one
+                FieldPart:
+                    id: fourtwenty_two
+                FieldPart:
+                    id: fivezero
+                FieldPart:
+                    id: fiveone
+                FieldPart:
+                    id: fivetwo
+                FieldPart:
+                    id: fivethree
+                FieldPart:
+                    id: fivefour
+                FieldPart:
+                    id: fivefive
+                FieldPart:
+                    id: fivesix
+                FieldPart:
+                    id: fiveseven
+                FieldPart:
+                    id: fiveeight
+                FieldPart:
+                    id: fivenine
+                FieldPart:
+                    id: fiveten
+                FieldPart:
+                    id: fiveeleven
+                FieldPart:
+                    id: fivetwelve
+                FieldPart:
+                    id: fivethirteen
+                FieldPart:
+                    id: fivefourteen
+                FieldPart:
+                    id: fivefifteen
+                FieldPart:
+                    id: fivesixteen
+                FieldPart:
+                    id: fiveseventeen
+                FieldPart:
+                    id: fiveeighteen
+                FieldPart:
+                    id: fivenineteen
+                FieldPart:
+                    id: fivetwenty
+                FieldPart:
+                    id: fivetwenty_one
+                FieldPart:
+                    id: fivetwenty_two
+                FieldPart:
+                    id: sixzero
+                FieldPart:
+                    id: sixone
+                FieldPart:
+                    id: sixtwo
+                FieldPart:
+                    id: sixthree
+                FieldPart:
+                    id: sixfour
+                FieldPart:
+                    id: sixfive
+                FieldPart:
+                    id: sixsix
+                FieldPart:
+                    id: sixseven
+                FieldPart:
+                    id: sixeight
+                FieldPart:
+                    id: sixnine
+                FieldPart:
+                    id: sixten
+                FieldPart:
+                    id: sixeleven
+                FieldPart:
+                    id: sixtwelve
+                FieldPart:
+                    id: sixthirteen
+                FieldPart:
+                    id: sixfourteen
+                FieldPart:
+                    id: sixfifteen
+                FieldPart:
+                    id: sixsixteen
+                FieldPart:
+                    id: sixseventeen
+                FieldPart:
+                    id: sixeighteen
+                FieldPart:
+                    id: sixnineteen
+                FieldPart:
+                    id: sixtwenty
+                FieldPart:
+                    id: sixtwenty_one
+                FieldPart:
+                    id: sixtwenty_two
+                FieldPart:
+                    id: sevenzero
+                FieldPart:
+                    id: sevenone
+                FieldPart:
+                    id: seventwo
+                FieldPart:
+                    id: seventhree
+                FieldPart:
+                    id: sevenfour
+                FieldPart:
+                    id: sevenfive
+                FieldPart:
+                    id: sevensix
+                FieldPart:
+                    id: sevenseven
+                FieldPart:
+                    id: seveneight
+                FieldPart:
+                    id: sevennine
+                FieldPart:
+                    id: seventen
+                FieldPart:
+                    id: seveneleven
+                FieldPart:
+                    id: seventwelve
+                FieldPart:
+                    id: seventhirteen
+                FieldPart:
+                    id: sevenfourteen
+                FieldPart:
+                    id: sevenfifteen
+                FieldPart:
+                    id: sevensixteen
+                FieldPart:
+                    id: sevenseventeen
+                FieldPart:
+                    id: seveneighteen
+                FieldPart:
+                    id: sevennineteen
+                FieldPart:
+                    id: seventwenty
+                FieldPart:
+                    id: seventwenty_one
+                FieldPart:
+                    id: seventwenty_two
+                FieldPart:
+                    id: eightzero
+                FieldPart:
+                    id: eightone
+                FieldPart:
+                    id: eighttwo
+                FieldPart:
+                    id: eightthree
+                FieldPart:
+                    id: eightfour
+                FieldPart:
+                    id: eightfive
+                FieldPart:
+                    id: eightsix
+                FieldPart:
+                    id: eightseven
+                FieldPart:
+                    id: eighteight
+                FieldPart:
+                    id: eightnine
+                FieldPart:
+                    id: eightten
+                FieldPart:
+                    id: eighteleven
+                FieldPart:
+                    id: eighttwelve
+                FieldPart:
+                    id: eightthirteen
+                FieldPart:
+                    id: eightfourteen
+                FieldPart:
+                    id: eightfifteen
+                FieldPart:
+                    id: eightsixteen
+                FieldPart:
+                    id: eightseventeen
+                FieldPart:
+                    id: eighteighteen
+                FieldPart:
+                    id: eightnineteen
+                FieldPart:
+                    id: eighttwenty
+                FieldPart:
+                    id: eighttwenty_one
+                FieldPart:
+                    id: eighttwenty_two
+                FieldPart:
+                    id: ninezero
+                FieldPart:
+                    id: nineone
+                FieldPart:
+                    id: ninetwo
+                FieldPart:
+                    id: ninethree
+                FieldPart:
+                    id: ninefour
+                FieldPart:
+                    id: ninefive
+                FieldPart:
+                    id: ninesix
+                FieldPart:
+                    id: nineseven
+                FieldPart:
+                    id: nineeight
+                FieldPart:
+                    id: ninenine
+                FieldPart:
+                    id: nineten
+                FieldPart:
+                    id: nineeleven
+                FieldPart:
+                    id: ninetwelve
+                FieldPart:
+                    id: ninethirteen
+                FieldPart:
+                    id: ninefourteen
+                FieldPart:
+                    id: ninefifteen
+                FieldPart:
+                    id: ninesixteen
+                FieldPart:
+                    id: nineseventeen
+                FieldPart:
+                    id: nineeighteen
+                FieldPart:
+                    id: ninenineteen
+                FieldPart:
+                    id: ninetwenty
+                FieldPart:
+                    id: ninetwenty_one
+                FieldPart:
+                    id: ninetwenty_two
+                FieldPart:
+                    id: tenzero
+                FieldPart:
+                    id: tenone
+                FieldPart:
+                    id: tentwo
+                FieldPart:
+                    id: tenthree
+                FieldPart:
+                    id: tenfour
+                FieldPart:
+                    id: tenfive
+                FieldPart:
+                    id: tensix
+                FieldPart:
+                    id: tenseven
+                FieldPart:
+                    id: teneight
+                FieldPart:
+                    id: tennine
+                FieldPart:
+                    id: tenten
+                FieldPart:
+                    id: teneleven
+                FieldPart:
+                    id: tentwelve
+                FieldPart:
+                    id: tenthirteen
+                FieldPart:
+                    id: tenfourteen
+                FieldPart:
+                    id: tenfifteen
+                FieldPart:
+                    id: tensixteen
+                FieldPart:
+                    id: tenseventeen
+                FieldPart:
+                    id: teneighteen
+                FieldPart:
+                    id: tennineteen
+                FieldPart:
+                    id: tentwenty
+                FieldPart:
+                    id: tentwenty_one
+                FieldPart:
+                    id: tentwenty_two
+        GridLayout:
+            id: tts
+            padding: self.size[0]/25, self.size[1]/6, self.size[0]/25, self.size[1]/6
+            rows: 1
+            Image:
+                source: "tap_to_start.png"
+        GridLayout:
+            id: res_screen
+            rows: 1
+            cols: 1
