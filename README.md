@@ -21,7 +21,7 @@ This is my second pet project. You can play Snake on computer or Android phone.
 
 1. Clone this repository.
 2. `cd` into this directory.
-3. `\venv\Scripts\activate.bat`
+3. `venv\Scripts\activate.bat`
 4. `python main.py -m screen:onex` screen: onex has 16:9 ratio.
 5. Enjoy!
 
